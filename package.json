@@ -27,7 +27,11 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "pandasuite-bridge": "^4.3.1"
+    "@beingenious/jsonpointer": "^1.0.3",
+    "jsondiffpatch": "^0.4.1",
+    "lodash": "^4.17.21",
+    "pandasuite-bridge": "^4.3.3",
+    "socket.io-client": "^4.2.0"
   },
   "release-it": {
     "github": {

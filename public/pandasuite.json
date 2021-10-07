@@ -2,93 +2,134 @@
   "version": "2.0.0",
   "main": "",
 
-  "system": {
-    "localization": false,
-    "actions": [
-      {
-        "id": "toMarker",
-        "name": "Change Image",
-        "locale_name": {
-          "fr_FR": "Change Image"
-        },
-        "params": [
-          { "id": "useless", "name": "Useless", "locale_name": {"fr_FR": "Inutile"}, "type": "Boolean" }
-        ]
-      }
-    ],
-    "events": [
-      {
-        "id": "triggerMarker",
-        "name": "Image",
-        "locale_name": {
-          "fr_FR": "Image"
-        }
-      }
-    ],
-    "markers": [
-      {
-        "params": [
-          { "id": "src", "name": "Source", "locale_name": {"fr_FR": "Source"}, "type": "String" }
-        ]
-      }
-    ]
-  },
-
   "properties": [
     {
-      "id": "searchTerm",
-      "name": "Search Term",
+      "id": "url",
+      "name": "Server url",
       "locale_name": {
-        "fr_FR": "Terme de recherche"
+        "fr_FR": "Adresse du serveur"
       },
       "type": "String",
-      "value": "panda"
+      "value": "ws://localhost:3000/",
+      "bindable": true
+    },
+    {
+      "id": "room",
+      "name": "Room",
+      "locale_name": {
+        "fr_FR": "Salle"
+      },
+      "type": "String",
+      "value": "root",
+      "bindable": true
     }
   ],
 
   "events": [
     {
-      "id": "imageChanged",
-      "name": "Image Changed",
+      "id": "onSignedIn",
+      "name": "Connected",
       "locale_name": {
-        "fr_FR": "Image Changée"
+        "fr_FR": "Connecté"
+      }
+    },
+    {
+      "id": "onSignedOut",
+      "name": "Disconnected",
+      "locale_name": {
+        "fr_FR": "Déconnecté"
       }
     }
   ],
 
   "actions": [
     {
-      "id": "changeColor",
-      "name": "Change Color",
+      "id": "change",
+      "name": "Modify the data",
+      "locale_name": {
+        "fr_FR": "Modifier la donnée"
+      },
       "params": [
         {
-          "id": "backgroundColor",
-          "name": "Background Color",
+          "id": "data",
+          "name": "Target",
           "locale_name": {
-            "fr_FR": "Couleur de fond"
+            "fr_FR": "Cible"
           },
           "type": "String",
-          "value": "#FFFFFF"
+          "style": "Explorer"
+        },
+        {
+          "id": "function",
+          "name": "Function",
+          "locale_name": {
+            "fr_FR": "Fonction"
+          },
+          "value": "set",
+          "type": "Dropdown",
+          "items": [
+            {
+              "id": "set",
+              "name": "Set",
+              "locale_name": {
+                "fr_FR": "Définir"
+              }    
+            },
+            {
+              "id": "inc",
+              "name": "Increment",
+              "locale_name": {
+                "fr_FR": "Incrémenter"
+              }    
+            },
+            {
+              "id": "dec",
+              "name": "Decrement",
+              "locale_name": {
+                "fr_FR": "Décrémenter"
+              }    
+            },
+            {
+              "id": "add",
+              "name": "Add",
+              "locale_name": {
+                "fr_FR": "Ajouter"
+              }    
+            },
+            {
+              "id": "del",
+              "name": "Delete",
+              "locale_name": {
+                "fr_FR": "Supprimer"
+              }    
+            },
+            {
+              "id": "delbyid",
+              "name": "Delete by id",
+              "locale_name": {
+                "fr_FR": "Supprimer par id"
+              }    
+            },
+            {
+              "id": "delbyvalue",
+              "name": "Delete by value",
+              "locale_name": {
+                "fr_FR": "Supprimer par valeur"
+              }    
+            }
+          ]
+        },
+        {
+          "id": "value",
+          "name": "Value",
+          "locale_name": {
+            "fr_FR": "Valeur"
+          },
+          "type": "JSON",
+          "bindable": true
         }
       ]
     }
   ],
-
-  "synchronization": [
-    {
-      "id": "synchroImages",
-      "name": "Synchronize images",
-      "locale_name": {
-        "fr_FR": "Synchroniser images"
-      }
-    }
-  ],
-
-  "resources": [
-    {
-      "id": "my_image.png",
-      "type": "Image",
-      "localization": false
-    }
-  ]
+  "queryable": {}
 }
