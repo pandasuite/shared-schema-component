@@ -10,8 +10,9 @@
         "fr_FR": "Adresse du serveur"
       },
       "type": "String",
-      "value": "ws://localhost:3000/",
-      "bindable": true
+      "value": "wss://shared-schema.panda.st:3443/",
+      "bindable": true,
+      "required": true
     },
     {
       "id": "room",
