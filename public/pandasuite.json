@@ -10,7 +10,7 @@
         "fr_FR": "Adresse du serveur"
       },
       "type": "String",
-      "value": "wss://shared-schema.panda.st:3443/",
+      "value": "https://pandasuite.com/mo/socket/schema/",
       "bindable": true,
       "required": true
     },
@@ -21,7 +21,6 @@
         "fr_FR": "Salle"
       },
       "type": "String",
-      "value": "root",
       "bindable": true
     }
   ],
@@ -130,6 +129,13 @@
           "bindable": true
         }
       ]
+    },
+    {
+      "id": "reset",
+      "name": "Reset schema",
+      "locale_name": {
+        "fr_FR": "Réinitialiser le schéma"
+      }
     }
   ],
   "queryable": {}

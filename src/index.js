@@ -10,6 +10,7 @@ import unset from 'lodash/unset';
 import pull from 'lodash/pull';
 import remove from 'lodash/remove';
 import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 
 import JSONPointer from '@beingenious/jsonpointer';
 
@@ -31,13 +32,31 @@ let socket = null;
 let schema = {};
 
 const initSocketIO = () => {
-  const { url, room } = properties || {};
+  const { url } = properties || {};
+  let { room } = properties || {};
 
   if (!url) {
     return;
   }
 
-  socket = io(url, {
+  if (PandaBridge.isStudio && isEmpty(room)) {
+    room = Math.random().toString(36).substring(2, 15)
+      + Math.random().toString(36).substring(2, 15);
+
+    PandaBridge.send(PandaBridge.UPDATED, {
+      properties: [
+        {
+          id: 'room',
+          value: room,
+        },
+      ],
+    });
+  }
+
+  const parsedUrl = new URL(url);
+  const path = parsedUrl.pathname;
+
+  socket = io(parsedUrl.origin, {
     reconnection: true,
     reconnectionDelay: 1000,
     reconnectionDelayMax: 5000,
@@ -45,6 +64,7 @@ const initSocketIO = () => {
     query: {
       room,
     },
+    path,
   });
 
   socket.on('connect', () => {
@@ -100,6 +120,11 @@ PandaBridge.init(() => {
 
   PandaBridge.onUpdate((pandaData) => {
     properties = pandaData.properties;
+
+    if (socket) {
+      socket.disconnect();
+    }
+    initSocketIO();
   });
 
   /* Actions */
@@ -144,5 +169,9 @@ PandaBridge.init(() => {
     if (patch) {
       socket.emit('schema', patch);
     }
+  });
+
+  PandaBridge.listen('reset', () => {
+    socket.emit('reset');
   });
 });
