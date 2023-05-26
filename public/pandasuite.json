@@ -21,7 +21,11 @@
         "fr_FR": "Salle"
       },
       "type": "String",
-      "bindable": true
+      "bindable": true,
+      "required": true,
+      "init": {
+        "value": "Math.random().toString(36).substr(2)"
+      }
     }
   ],
 
