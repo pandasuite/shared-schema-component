@@ -5,7 +5,7 @@
   "repository": "https://github.com/pandasuite/js-boilerplate-component.git",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server",
     "build": "webpack --mode production --devtool none && cd build && zip -r -X '../pandasuite-component.zip' *",
     "release": "yarn build && release-it --no-npm.publish"
   },
@@ -22,9 +22,9 @@
     "release-it": "^13.6.3",
     "style-loader": "^2.0.0",
     "tailwindcss": "^2.1.2",
-    "webpack": "4",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
     "@beingenious/jsonpointer": "^1.0.3",

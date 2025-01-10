@@ -9,14 +9,15 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './build',
+    static: {
+      directory: path.join(__dirname, 'build'),
+    },
+    port: 8080,
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new CopyPlugin({
-      patterns: [
-        { from: 'public' },
-      ],
+      patterns: [{ from: 'public' }],
     }),
   ],
   output: {
