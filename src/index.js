@@ -20,8 +20,14 @@ const diffpatcher = create();
 const NUMERIC_DIFFERENCE = -8;
 
 const numericDiffFilter = (context) => {
-  if (typeof context.left === 'number' && typeof context.right === 'number' && context.right !== context.left) {
-    context.setResult([0, context.right - context.left, NUMERIC_DIFFERENCE]).exit();
+  if (
+    typeof context.left === 'number' &&
+    typeof context.right === 'number' &&
+    context.right !== context.left
+  ) {
+    context
+      .setResult([0, context.right - context.left, NUMERIC_DIFFERENCE])
+      .exit();
   }
 };
 numericDiffFilter.filterName = 'numeric';
@@ -40,8 +46,9 @@ const initSocketIO = () => {
   }
 
   if (PandaBridge.isStudio && isEmpty(room)) {
-    room = Math.random().toString(36).substring(2, 15)
-      + Math.random().toString(36).substring(2, 15);
+    room =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
 
     PandaBridge.send(PandaBridge.UPDATED, {
       properties: [
@@ -88,6 +95,10 @@ const initSocketIO = () => {
   });
 };
 
+const initSharedSchema = () => {
+  initSocketIO();
+};
+
 const getPointer = (data, pointer) => {
   let resolvedPointer = [];
 
@@ -98,7 +109,10 @@ const getPointer = (data, pointer) => {
       unitPool: {
         language: navigator.language.replace('-', '_'),
       },
-    }, undefined, undefined, resolvedPointer,
+    },
+    undefined,
+    undefined,
+    resolvedPointer,
   );
 
   if (!value) {
@@ -112,9 +126,9 @@ PandaBridge.init(() => {
     properties = pandaData.properties;
 
     if (document.readyState === 'complete') {
-      initSocketIO();
+      initSharedSchema();
     } else {
-      document.addEventListener('DOMContentLoaded', initSocketIO, false);
+      document.addEventListener('DOMContentLoaded', initSharedSchema, false);
     }
   });
 
@@ -138,9 +152,17 @@ PandaBridge.init(() => {
     if (func === 'set') {
       set(newSchema, pointer, value);
     } else if (func === 'inc') {
-      set(newSchema, pointer, (parseFloat(existingValue) || 0) + parseInt(value));
+      set(
+        newSchema,
+        pointer,
+        (parseFloat(existingValue) || 0) + parseInt(value),
+      );
     } else if (func === 'dec') {
-      set(newSchema, pointer, (parseFloat(existingValue) || 0) - parseInt(value));
+      set(
+        newSchema,
+        pointer,
+        (parseFloat(existingValue) || 0) - parseInt(value),
+      );
     } else if (func === 'del') {
       unset(newSchema, pointer);
     } else if (func === 'add') {
