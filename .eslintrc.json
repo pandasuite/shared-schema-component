@@ -3,13 +3,27 @@
     "browser": true,
     "es2020": true
   },
-  "extends": ["airbnb-base"],
+  "extends": ["airbnb-base", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaVersion": 11,
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "radix": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/vite.config.js",
+          "**/*.config.js",
+          "**/scripts/**",
+          "**/tests/**"
+        ]
+      }
+    ]
   }
 }
