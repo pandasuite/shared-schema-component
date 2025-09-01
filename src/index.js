@@ -36,6 +36,7 @@ diffpatcher.processor.pipes.diff.before('trivial', numericDiffFilter);
 let properties = null;
 let socket = null;
 let schema = {};
+let reactModule = null;
 
 const initSocketIO = () => {
   const { url } = properties || {};
@@ -92,11 +93,21 @@ const initSocketIO = () => {
     PandaBridge.send(PandaBridge.UPDATED, {
       queryable: schema,
     });
+
+    if (PandaBridge.isStudio && reactModule) {
+      reactModule.updateReactSchema(schema);
+    }
   });
 };
 
 const initSharedSchema = () => {
   initSocketIO();
+  if (PandaBridge.isStudio) {
+    import('./ReactInitializer').then((module) => {
+      reactModule = module;
+      module.initReact(schema);
+    });
+  }
 };
 
 const getPointer = (data, pointer) => {
