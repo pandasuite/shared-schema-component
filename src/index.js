@@ -136,10 +136,10 @@ PandaBridge.init(() => {
   PandaBridge.onLoad((pandaData) => {
     properties = pandaData.properties;
 
-    if (document.readyState === 'complete') {
-      initSharedSchema();
-    } else {
+    if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initSharedSchema, false);
+    } else {
+      initSharedSchema();
     }
   });
 
