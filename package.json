@@ -39,7 +39,7 @@
     "@beingenious/jsonpointer": "^1.0.3",
     "jsondiffpatch": "^0.4.1",
     "lodash": "^4.17.21",
-    "pandasuite-bridge": "^4.3.3",
+    "pandasuite-bridge": "^5.0.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "socket.io-client": "^4.2.0"

@@ -4049,7 +4049,7 @@ core-js-compat@^3.43.0:
   dependencies:
     browserslist "^4.26.3"
 
-core-js@^3.41.0:
+core-js@^3.36.0, core-js@^3.41.0:
   version "3.46.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.46.0.tgz#323a092b96381a9184d0cd49ee9083b2f93373bb"
   integrity sha512-vDMm9B0xnqqZ8uSBpZ8sNtRtOdmfShrvT6h2TuQGLs0Is+cR0DYbj/KWP6ALVNbWPpqA/qPLoOuppJN07humpA==
@@ -6570,6 +6570,11 @@ locate-path@^7.1.0:
   dependencies:
     p-locate "^6.0.0"
 
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
@@ -7281,10 +7286,13 @@ package-json@^6.3.0:
     registry-url "^5.0.0"
     semver "^6.2.0"
 
-pandasuite-bridge@^4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/pandasuite-bridge/-/pandasuite-bridge-4.3.3.tgz#9ccdac9cc3748d75f6e3c1224b9dad66c3ae70cc"
-  integrity sha512-Th5rFmRuLtEdVYMERUEz9GoJ3n+/Ns8yHmlLh/qS2tHF79STNCGF/0Nk6iYiDyXasJ6o0feJHEy5V2+2oPFKHA==
+pandasuite-bridge@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/pandasuite-bridge/-/pandasuite-bridge-5.0.5.tgz#1b4823a406a3313d64f22a170b9441c3069f9b7b"
+  integrity sha512-KHNEnP3gD6IImjZ41zisNW5sShc0byKvUkrn5cZbFaK6v6TqeU8xY6Syr32d23jPE/GSDAO8lKgQKAGwBvi+IQ==
+  dependencies:
+    core-js "^3.36.0"
+    lodash-es "^4.17.21"
 
 parent-module@^1.0.0:
   version "1.0.1"
