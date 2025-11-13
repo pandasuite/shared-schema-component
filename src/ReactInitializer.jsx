@@ -2,19 +2,27 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { JSONEditor } from '@beingenious/jsoneditor';
 import '@beingenious/jsoneditor/dist/style.css';
+import PandaBridge, { Binder } from 'pandasuite-bridge';
 
 let root = null;
 let currentSchema = null;
 
 function JSONEditorWrapper({ data }) {
+  const { __ps_externalPaths: externalPaths } = PandaBridge.properties || {};
+
   return (
     <JSONEditor
       data={data}
+      externalPaths={externalPaths}
+      bindingResolvers={{
+        resolveShortTags: Binder.resolveShortTags,
+        compatExpression: Binder.compatExpression,
+      }}
       config={{
         title: null,
         viewSwitchControl: true,
         buttonSave: false,
-        readOnly: true,
+        readOnly: false,
         view: 'raw',
         gridView: {
           sideBar: false,
