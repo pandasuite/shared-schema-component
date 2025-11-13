@@ -3,7 +3,7 @@
   "main": "",
 
   "system": {
-    "externalPathHandler": {}
+    "externalPathsHandler": {}
   },
 
   "properties": [
