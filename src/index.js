@@ -88,6 +88,12 @@ const initSocketIO = () => {
   });
 
   socket.on('schema', (newSchema) => {
+    // Ne mettre à jour que si le schéma a vraiment changé
+    const patch = diffpatcher.diff(schema, newSchema);
+    if (!patch) {
+      return;
+    }
+
     schema = newSchema;
 
     PandaBridge.send(PandaBridge.UPDATED, {
@@ -100,12 +106,22 @@ const initSocketIO = () => {
   });
 };
 
+const emitSchemaChange = (newSchema) => {
+  if (!newSchema || !socket) {
+    return;
+  }
+  const patch = diffpatcher.diff(schema, newSchema);
+  if (patch) {
+    socket.emit('schema', patch);
+  }
+};
+
 const initSharedSchema = () => {
   initSocketIO();
   if (PandaBridge.isStudio) {
     import('./ReactInitializer').then((module) => {
       reactModule = module;
-      module.initReact(schema);
+      module.initReact(schema, emitSchemaChange);
     });
   }
 };
