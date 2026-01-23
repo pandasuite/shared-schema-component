@@ -1631,10 +1631,10 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@beingenious/jsoneditor@^0.14.3":
-  version "0.14.3"
-  resolved "https://npm.pkg.github.com/download/@beingenious/jsoneditor/0.14.3/b898039ee14670193e848994a2ae129746afe86e#b898039ee14670193e848994a2ae129746afe86e"
-  integrity sha512-vSAq8uHkIIQjRxf4rFUnfHis0qIftLzDnsOCLfYRYj3R7pvlLVOO0/Fbws4F8ORAFfmBVfRWLVe9I0NVaNKFOg==
+"@beingenious/jsoneditor@^0.14.4":
+  version "0.14.4"
+  resolved "https://npm.pkg.github.com/download/@beingenious/jsoneditor/0.14.4/f4eb31010693268c1e28d7f81e03078a3ce1485e#f4eb31010693268c1e28d7f81e03078a3ce1485e"
+  integrity sha512-4rFtNO1yx1DQmF71FeOQCcDvvrA2UDjx7gOjVRhL82Jj4J2EtkiNZI8H1yP7R6z+JEA8eXJBUKyCSB4EHJF4pQ==
   dependencies:
     "@ag-grid-community/locale" "^34.0.0"
     "@beingenious/jsonpointer" "^2.0.14"
