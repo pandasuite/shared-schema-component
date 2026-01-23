@@ -12,7 +12,7 @@ import remove from 'lodash/remove';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 
-import JSONPointer from '@beingenious/jsonpointer';
+import { JSONPointer } from '@beingenious/jsonpointer';
 
 import './index.css';
 
