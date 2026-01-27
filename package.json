@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "@ag-grid-community/styles": "^32.3.3",
-    "@beingenious/jsoneditor": "^0.14.4",
-    "@beingenious/jsonpointer": "^3.4.1",
+    "@beingenious/jsoneditor": "^0.14.6",
+    "@beingenious/jsonpointer": "^3.5.0",
     "jsondiffpatch": "^0.4.1",
     "lodash": "^4.17.21",
     "lucide-react": "^0.562.0",

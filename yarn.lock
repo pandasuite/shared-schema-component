@@ -1631,13 +1631,13 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@beingenious/jsoneditor@^0.14.4":
-  version "0.14.4"
-  resolved "https://npm.pkg.github.com/download/@beingenious/jsoneditor/0.14.4/f4eb31010693268c1e28d7f81e03078a3ce1485e#f4eb31010693268c1e28d7f81e03078a3ce1485e"
-  integrity sha512-4rFtNO1yx1DQmF71FeOQCcDvvrA2UDjx7gOjVRhL82Jj4J2EtkiNZI8H1yP7R6z+JEA8eXJBUKyCSB4EHJF4pQ==
+"@beingenious/jsoneditor@^0.14.6":
+  version "0.14.6"
+  resolved "https://npm.pkg.github.com/download/@beingenious/jsoneditor/0.14.6/4db5d9c2001289c90927d38231c2ee60828a6f01#4db5d9c2001289c90927d38231c2ee60828a6f01"
+  integrity sha512-paNagGUHa9GNaz2SQp+7vaK5TT3PaynH+ZnNJDZAV4JJP7jw8C3MoVGAIToL/GCRHSo/AY5Badtd7Dbw19AHdA==
   dependencies:
     "@ag-grid-community/locale" "^34.0.0"
-    "@beingenious/jsonpointer" "^2.0.14"
+    "@beingenious/jsonpointer" "^2.1.4"
     "@codemirror/lang-json" "^6.0.1"
     "@headlessui/react" "^2.0.4"
     "@heroicons/react" "^2.1.3"
@@ -1663,7 +1663,7 @@
     tailwindcss-animate "^1.0.7"
     use-eye-dropper "^1.6.1"
 
-"@beingenious/jsonpointer@^2.0.14":
+"@beingenious/jsonpointer@^2.1.4":
   version "2.1.4"
   resolved "https://npm.pkg.github.com/download/@beingenious/jsonpointer/2.1.4/85a3de47438d8cc0309883afec9027fe0bd55598#85a3de47438d8cc0309883afec9027fe0bd55598"
   integrity sha512-GYrjnHtQwxuXkyMzGQ6IVAy/1m8QdZqWWDPq34t7NE5+giY+bIj6gQodhCemlo508giEaSMRUp/JeBxEbfKF4A==
@@ -1673,10 +1673,10 @@
     lodash "^4.17.21"
     marked "^4.0.0"
 
-"@beingenious/jsonpointer@^3.4.1":
-  version "3.4.1"
-  resolved "https://npm.pkg.github.com/download/@beingenious/jsonpointer/3.4.1/4a9c2fec9c38ca882b37566be68ae5c1bbbb2b85#4a9c2fec9c38ca882b37566be68ae5c1bbbb2b85"
-  integrity sha512-FQIENGRMxQql31T73Q9ZqCibxosRLVXuIJREYBzdi010jsKGS0xbN/l9YJqdQuUEeoy0t3oLblhw8tXPZiEAjw==
+"@beingenious/jsonpointer@^3.5.0":
+  version "3.5.0"
+  resolved "https://npm.pkg.github.com/download/@beingenious/jsonpointer/3.5.0/fd38e938aeadad612cbb0111818d864ae30c671c#fd38e938aeadad612cbb0111818d864ae30c671c"
+  integrity sha512-kwKUrDbCPaXCRAsNXdJGXwmFUDyJcUMLbzF6omja21EgZ8Oiq4UxLM+A+4Ix9vTBp7V5WGZrLNX7fu9d46W9eQ==
   dependencies:
     date-fns "^2.30.0"
     date-fns-tz "^2.0.0"
