@@ -13,9 +13,9 @@
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
-    "@vitejs/plugin-legacy": "6",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^9.2.1",
+    "caniuse-lite": "^1.0.30001766",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^5.2.6",
@@ -27,7 +27,7 @@
     "postcss-loader": "4",
     "release-it": "^13.6.3",
     "style-loader": "^2.0.0",
-    "tailwindcss": "^2.1.2",
+    "tailwindcss": "^3",
     "vite": "^6.0.7",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
@@ -53,19 +53,10 @@
       ]
     }
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all",
-      "IE >= 9",
-      "Android > 0",
-      "iOS > 0"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "browserslist": [
+    "Chrome 87"
+  ],
+  "resolutions": {
+    "caniuse-lite": "^1.0.30001766"
   }
 }
