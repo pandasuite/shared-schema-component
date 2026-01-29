@@ -3,16 +3,9 @@ import { io } from 'socket.io-client';
 import { create } from 'jsondiffpatch';
 
 import merge from 'lodash/merge';
-import compact from 'lodash/compact';
-import get from 'lodash/get';
-import set from 'lodash/set';
-import unset from 'lodash/unset';
-import pull from 'lodash/pull';
-import remove from 'lodash/remove';
-import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 
-import { JSONPointer } from '@beingenious/jsonpointer';
+import { ModifyData } from '@beingenious/jsonpointer';
 
 import './index.css';
 
@@ -126,28 +119,6 @@ const initSharedSchema = () => {
   }
 };
 
-const getPointer = (data, pointer) => {
-  let resolvedPointer = [];
-
-  const value = JSONPointer.resolvePointer(
-    data,
-    JSONPointer.getPointerByJSONPointer(pointer),
-    {
-      unitPool: {
-        language: navigator.language.replace('-', '_'),
-      },
-    },
-    undefined,
-    undefined,
-    resolvedPointer,
-  );
-
-  if (!value) {
-    resolvedPointer = compact(pointer.replace(/@[^:]+:/g, '').split('/'));
-  }
-  return resolvedPointer;
-};
-
 PandaBridge.init(() => {
   PandaBridge.onLoad((pandaData) => {
     properties = pandaData.properties;
@@ -170,52 +141,33 @@ PandaBridge.init(() => {
 
   /* Actions */
 
-  PandaBridge.listen('change', ([{ data: key, function: func, value }]) => {
-    const pointer = getPointer(schema, key);
+  PandaBridge.listen('change', ([payload]) => {
+    const op =
+      payload?.modify && typeof payload.modify === 'object'
+        ? payload.modify
+        : payload;
+    const { property, func, value } = op || {};
+
     const newSchema = merge({}, schema);
 
-    const existingValue = get(schema, pointer);
-
-    if (func === 'set') {
-      set(newSchema, pointer, value);
-    } else if (func === 'inc') {
-      set(
-        newSchema,
-        pointer,
-        (parseFloat(existingValue) || 0) + parseInt(value),
-      );
-    } else if (func === 'dec') {
-      set(
-        newSchema,
-        pointer,
-        (parseFloat(existingValue) || 0) - parseInt(value),
-      );
-    } else if (func === 'del') {
-      unset(newSchema, pointer);
-    } else if (func === 'add') {
-      const existingArray = get(newSchema, pointer);
-
-      if (!isArray(existingArray)) {
-        set(newSchema, pointer, [value]);
-      } else {
-        existingArray.push(value);
-      }
-    } else if (func === 'delbyid') {
-      const existingArray = get(newSchema, pointer);
-
-      if (isArray(existingArray)) {
-        remove(existingArray, (row) => row.id === value);
-      }
-    } else if (func === 'delbyvalue') {
-      const existingArray = get(newSchema, pointer);
-
-      if (isArray(existingArray)) {
-        pull(existingArray, value);
-      }
-    }
+    const changed = ModifyData.applyInPlace(
+      newSchema,
+      {
+        property,
+        func,
+        value,
+      },
+      {
+        obj: {
+          unitPool: {
+            language: navigator.language.replace('-', '_'),
+          },
+        },
+      },
+    );
 
     const patch = diffpatcher.diff(schema, newSchema);
-    if (patch) {
+    if (changed && patch) {
       socket.emit('schema', patch);
     }
   });
