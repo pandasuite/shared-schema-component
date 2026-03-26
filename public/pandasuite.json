@@ -1,11 +1,17 @@
 {
+  "meta": {
+    "stype": "app-to-app",
+    "componentURL": "https://github.com/pandasuite/shared-schema-component/",
+    "description": "Bidirectional real-time data exchange between PandaSuite applications, external devices (TUIO, serial port), and custom servers. Enables multi-device synchronized experiences and hardware integration.",
+    "locale_description": {
+      "fr_FR": "Échange de données bidirectionnel en temps réel entre applications PandaSuite, appareils externes (TUIO, port série) et serveurs personnalisés. Permet des expériences synchronisées multi-appareils et l'intégration matérielle."
+    }
+  },
   "version": "2.0.0",
   "main": "",
-
   "system": {
     "externalPathsHandler": {}
   },
-
   "properties": [
     {
       "id": "url",
@@ -16,7 +22,11 @@
       "type": "String",
       "value": "https://pandasuite.com/mo/socket/schema/",
       "bindable": true,
-      "required": true
+      "required": true,
+      "description": "URL of the data exchange server (PandaSuite cloud, local server, or custom endpoint for TUIO/serial/external protocols).",
+      "locale_description": {
+        "fr_FR": "URL du serveur d'échange de données (cloud PandaSuite, serveur local ou endpoint personnalisé pour les protocoles TUIO/série/externes)."
+      }
     },
     {
       "id": "room",
@@ -29,16 +39,23 @@
       "required": true,
       "init": {
         "value": "Math.random().toString(36).substr(2)"
+      },
+      "description": "Room name for grouping connected clients on the same channel.",
+      "locale_description": {
+        "fr_FR": "Nom de la salle pour regrouper les clients connectés sur le même canal."
       }
     }
   ],
-
   "events": [
     {
       "id": "onSignedIn",
       "name": "Connected",
       "locale_name": {
         "fr_FR": "Connecté"
+      },
+      "description": "Fires when the component connects to the data exchange server.",
+      "locale_description": {
+        "fr_FR": "Se déclenche quand le composant se connecte au serveur d'échange de données."
       }
     },
     {
@@ -46,10 +63,13 @@
       "name": "Disconnected",
       "locale_name": {
         "fr_FR": "Déconnecté"
+      },
+      "description": "Fires when the component disconnects from the data exchange server.",
+      "locale_description": {
+        "fr_FR": "Se déclenche quand le composant se déconnecte du serveur d'échange de données."
       }
     }
   ],
-
   "actions": [
     {
       "id": "change",
@@ -60,15 +80,27 @@
       "params": [
         {
           "id": "modify",
-          "type": "ModifyData"
+          "type": "ModifyData",
+          "description": "Data modifications to broadcast (key-value changes applied to the shared state).",
+          "locale_description": {
+            "fr_FR": "Modifications de données à diffuser (changements clé-valeur appliqués à l'état partagé)."
+          }
         }
-      ]
+      ],
+      "description": "Send data modifications to connected clients or external systems.",
+      "locale_description": {
+        "fr_FR": "Envoyer des modifications de données aux clients connectés ou aux systèmes externes."
+      }
     },
     {
       "id": "reset",
       "name": "Reset schema",
       "locale_name": {
         "fr_FR": "Réinitialiser le schéma"
+      },
+      "description": "Reset all shared data to its initial state across all connected clients.",
+      "locale_description": {
+        "fr_FR": "Réinitialiser toutes les données partagées à leur état initial sur tous les clients connectés."
       }
     }
   ],
