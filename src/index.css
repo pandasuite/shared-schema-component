@@ -11,6 +11,11 @@ body {
   background-color: white;
 }
 
+/* jsoneditor's dark background, shown while the editor loads */
+.dark body {
+  background-color: #181b21;
+}
+
 #react-root {
   width: 100%;
   height: 100%;

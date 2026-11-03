@@ -876,10 +876,10 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@beingenious/jsoneditor@^0.17.6":
-  version "0.17.6"
-  resolved "https://npm.pkg.github.com/download/@beingenious/jsoneditor/0.17.6/309523e4120d9fedaf89da8a4cc06d593462667d#309523e4120d9fedaf89da8a4cc06d593462667d"
-  integrity sha512-hVjquxt+x/LdeYMXfyOVYy+UZ77HbS6vsjeKQPFdH0zr7h7sI9YmG5L37y+gX3LmcEqaL041AbEn5uvKs29P6Q==
+"@beingenious/jsoneditor@^0.17.7":
+  version "0.17.7"
+  resolved "https://npm.pkg.github.com/download/@beingenious/jsoneditor/0.17.7/595546a3efd960b17546e40b73182d4091cdd7a5#595546a3efd960b17546e40b73182d4091cdd7a5"
+  integrity sha512-nrqkqR0cTLtFLY8bGYKDInRlXrWHOgWFY3a1O+88LFNggtgivgC7cTlSRhZB/kRFhzYziQXzevt+VeCz4f0PzA==
   dependencies:
     "@ag-grid-community/locale" "^34.0.0"
     "@beingenious/jsonpointer" "^3.6.4"
@@ -6797,10 +6797,10 @@ package-json@^6.3.0:
     registry-url "^5.0.0"
     semver "^6.2.0"
 
-pandasuite-bridge@^5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/pandasuite-bridge/-/pandasuite-bridge-5.0.5.tgz#1b4823a406a3313d64f22a170b9441c3069f9b7b"
-  integrity sha512-KHNEnP3gD6IImjZ41zisNW5sShc0byKvUkrn5cZbFaK6v6TqeU8xY6Syr32d23jPE/GSDAO8lKgQKAGwBvi+IQ==
+pandasuite-bridge@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/pandasuite-bridge/-/pandasuite-bridge-5.2.0.tgz#f7aef2604b70177eb64e27882601ac4aaebf007b"
+  integrity sha512-qIOi3RzK1tq+aD5SA30u52EQXmieDzmdpOKKiuJIioHAs5D5bFDWPeTVpFbCsJtT/vaugtzppEgZM1VXvsx0Mw==
   dependencies:
     core-js "^3.36.0"
     lodash-es "^4.17.21"

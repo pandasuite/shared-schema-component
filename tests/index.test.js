@@ -25,6 +25,7 @@ vi.mock('pandasuite-bridge', () => ({
       host.listeners[name] = callback;
     },
     send: (event, args) => host.sent.push({ event, args }),
+    followStudioAppearance: () => {},
   },
 }));
 vi.mock('socket.io-client', () => ({

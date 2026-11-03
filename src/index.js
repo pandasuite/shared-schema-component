@@ -138,6 +138,8 @@ const initSharedSchema = () => {
   }
 };
 
+PandaBridge.followStudioAppearance();
+
 PandaBridge.init(() => {
   PandaBridge.onLoad((pandaData) => {
     properties = pandaData.properties;
