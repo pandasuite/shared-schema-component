@@ -26,12 +26,24 @@ const numericDiffFilter = (context) => {
 numericDiffFilter.filterName = 'numeric';
 diffpatcher.processor.pipes.diff.before('trivial', numericDiffFilter);
 
-// Changes other than increments go as values, and texts whole, so that a
-// change sent twice, or diffed from a schema the server has since moved past,
-// lands the same (#4). Increments keep the differences above, which the server
-// adds up.
-const valuePatcher = create({ textDiff: { minLength: Infinity } });
+// Changes other than increments go as values, so that a change sent twice, or
+// diffed from a schema the server has since moved past, lands the same (#4).
+// Increments keep the differences above, which the server adds up.
+const valuePatcher = create();
 const ADDITIVE_FUNCTIONS = ['inc', 'dec'];
+
+// A changed text goes whole, as its new value alone: the server sets it as is.
+const newTextFilter = (context) => {
+  if (
+    typeof context.left === 'string' &&
+    typeof context.right === 'string' &&
+    context.right !== context.left
+  ) {
+    context.setResult([context.right]).exit();
+  }
+};
+newTextFilter.filterName = 'newText';
+valuePatcher.processor.pipes.diff.before('trivial', newTextFilter);
 
 let properties = null;
 let socket = null;

@@ -121,6 +121,16 @@ describe('Studio editor', () => {
     expect(shownToHost().at(-1)).toEqual(stored);
   });
 
+  it('sends a changed text as its new value alone', async () => {
+    await start({ studio: true });
+    const data = patcher.clone(stored);
+    data.bio = EDITED;
+
+    editor.onChange(data);
+
+    expect(room.emitted.map(({ patch }) => patch)).toEqual([{ bio: [EDITED] }]);
+  });
+
   it('stores the last of two edits made before the server answers', async () => {
     await start({ studio: true });
     const data = patcher.clone(stored);
