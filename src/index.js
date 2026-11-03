@@ -146,15 +146,17 @@ PandaBridge.init(() => {
       payload?.modify && typeof payload.modify === 'object'
         ? payload.modify
         : payload;
-    const { property, func, value } = op || {};
+    // Actions saved before the `modify` parameter (2.2.0) store the target
+    // and the function as `data` and `function`.
+    const { property, data, func, function: legacyFunc, value } = op || {};
 
     const newSchema = merge({}, schema);
 
     const changed = ModifyData.applyInPlace(
       newSchema,
       {
-        property,
-        func,
+        property: property ?? data,
+        func: func ?? legacyFunc,
         value,
       },
       {
