@@ -26,6 +26,25 @@ const numericDiffFilter = (context) => {
 numericDiffFilter.filterName = 'numeric';
 diffpatcher.processor.pipes.diff.before('trivial', numericDiffFilter);
 
+// Changes other than increments go as values, so that a change sent twice, or
+// diffed from a schema the server has since moved past, lands the same (#4).
+// Increments keep the differences above, which the server adds up.
+const valuePatcher = create();
+const ADDITIVE_FUNCTIONS = ['inc', 'dec'];
+
+// A changed text goes whole, as its new value alone: the server sets it as is.
+const newTextFilter = (context) => {
+  if (
+    typeof context.left === 'string' &&
+    typeof context.right === 'string' &&
+    context.right !== context.left
+  ) {
+    context.setResult([context.right]).exit();
+  }
+};
+newTextFilter.filterName = 'newText';
+valuePatcher.processor.pipes.diff.before('trivial', newTextFilter);
+
 let properties = null;
 let socket = null;
 let schema = {};
@@ -103,7 +122,7 @@ const emitSchemaChange = (newSchema) => {
   if (!newSchema || !socket) {
     return;
   }
-  const patch = diffpatcher.diff(schema, newSchema);
+  const patch = valuePatcher.diff(schema, newSchema);
   if (patch) {
     socket.emit('schema', patch);
   }
@@ -149,6 +168,7 @@ PandaBridge.init(() => {
     // Actions saved before the `modify` parameter (2.2.0) store the target
     // and the function as `data` and `function`.
     const { property, data, func, function: legacyFunc, value } = op || {};
+    const modifyFunc = func ?? legacyFunc;
 
     const newSchema = merge({}, schema);
 
@@ -156,7 +176,7 @@ PandaBridge.init(() => {
       newSchema,
       {
         property: property ?? data,
-        func: func ?? legacyFunc,
+        func: modifyFunc,
         value,
       },
       {
@@ -168,7 +188,10 @@ PandaBridge.init(() => {
       },
     );
 
-    const patch = diffpatcher.diff(schema, newSchema);
+    const patcher = ADDITIVE_FUNCTIONS.includes(modifyFunc)
+      ? diffpatcher
+      : valuePatcher;
+    const patch = patcher.diff(schema, newSchema);
     if (changed && patch) {
       socket.emit('schema', patch);
     }
