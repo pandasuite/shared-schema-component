@@ -9,6 +9,13 @@ let root = null;
 let currentSchema = null;
 let onSchemaChangeCallback = null;
 
+// One object for the editor's lifetime: the editor refetches the items of
+// external collections whenever its resolvers change identity.
+const bindingResolvers = {
+  resolveShortTags: Binder.resolveShortTags,
+  compatExpression: Binder.compatExpression,
+};
+
 function JSONEditorWrapper({ data, onDataChange }) {
   const safeData = React.useMemo(() => (data ? cloneDeep(data) : {}), [data]);
 
@@ -35,14 +42,9 @@ function JSONEditorWrapper({ data, onDataChange }) {
       misc={jsonEditorMisc}
       onChange={onDataChange}
       externalPaths={externalPaths}
-      bindingResolvers={{
-        resolveShortTags: Binder.resolveShortTags,
-        compatExpression: Binder.compatExpression,
-      }}
+      bindingResolvers={bindingResolvers}
       config={{
-        title: null,
         viewSwitchControl: true,
-        buttonSave: false,
         readOnly: false,
         gridView: {
           sideBar: false,
@@ -50,8 +52,6 @@ function JSONEditorWrapper({ data, onDataChange }) {
         rawView: {
           importJson: false,
           exportJson: false,
-          formatJson: false,
-          compressJson: false,
         },
       }}
     />
